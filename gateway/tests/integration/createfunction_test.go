@@ -13,12 +13,12 @@ import (
 	requests "github.com/openfaas/faas/gateway/requests"
 )
 
-func createFunction(request types.FunctionDeployment) (string, int, error) {
+func createFunction(request types.FunctionDeployment) (string, int, http.Header, error) {
 	marshalled, _ := json.Marshal(request)
 	return fireRequest("http://localhost:8080/system/functions", http.MethodPost, string(marshalled))
 }
 
-func deleteFunction(name string) (string, int, error) {
+func deleteFunction(name string) (string, int, http.Header, error) {
 	marshalled, _ := json.Marshal(requests.DeleteFunctionRequest{FunctionName: name})
 	return fireRequest("http://localhost:8080/system/functions", http.MethodDelete, string(marshalled))
 }
@@ -30,7 +30,7 @@ func TestCreate_ValidRequest(t *testing.T) {
 		EnvProcess: "",
 	}
 
-	_, code, err := createFunction(request)
+	_, code, _, err := createFunction(request)
 
 	if err != nil {
 		t.Log(err)
@@ -53,7 +53,7 @@ func TestCreate_InvalidImage(t *testing.T) {
 		EnvProcess: "",
 	}
 
-	body, code, err := createFunction(request)
+	body, code, _, err := createFunction(request)
 
 	if err != nil {
 		t.Log(err)
@@ -75,7 +75,7 @@ func TestCreate_InvalidImage(t *testing.T) {
 
 func TestCreate_InvalidJson(t *testing.T) {
 	reqBody := `not json`
-	_, code, err := fireRequest("http://localhost:8080/system/functions", http.MethodPost, reqBody)
+	_, code, _, err := fireRequest("http://localhost:8080/system/functions", http.MethodPost, reqBody)
 
 	if err != nil {
 		t.Log(err)

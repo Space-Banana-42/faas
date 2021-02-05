@@ -9,7 +9,7 @@ import (
 )
 
 func Test_InfoEndpoint_Returns_200(t *testing.T) {
-	_, code, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
+	_, code, _, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
 
 	if err != nil {
 		t.Log(err)
@@ -24,7 +24,7 @@ func Test_InfoEndpoint_Returns_200(t *testing.T) {
 }
 
 func Test_InfoEndpoint_Returns_Gateway_Version_SHA_And_Message(t *testing.T) {
-	body, _, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
+	body, _, _, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
 
 	if err != nil {
 		t.Log(err)
@@ -48,7 +48,7 @@ func Test_InfoEndpoint_Returns_Gateway_Version_SHA_And_Message(t *testing.T) {
 }
 
 func Test_InfoEndpoint_Returns_Arch(t *testing.T) {
-	body, _, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
+	body, _, _, err := fireRequest("http://localhost:8080/system/info", http.MethodGet, "")
 
 	if err != nil {
 		t.Log(err)

@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/docker/distribution v2.7.1+incompatible
 	github.com/gorilla/mux v1.8.0
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/nats-io/jwt v1.2.2 // indirect
 	github.com/nats-io/nats-streaming-server v0.20.0 // indirect
 	github.com/nats-io/stan.go v0.8.2 // indirect
@@ -15,4 +16,5 @@ require (
 	github.com/prometheus/procfs v0.3.0 // indirect
 	go.uber.org/goleak v1.1.10
 	golang.org/x/sys v0.0.0-20210119212857-b64e53b001e4 // indirect
+	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )

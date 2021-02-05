@@ -10,7 +10,7 @@ import (
 
 func TestDelete_EmptyFunctionGivenFails(t *testing.T) {
 	reqBody := `{"functionName":""}`
-	_, code, err := fireRequest("http://localhost:8080/system/functions", http.MethodDelete, reqBody)
+	_, code, _, err := fireRequest("http://localhost:8080/system/functions", http.MethodDelete, reqBody)
 
 	if err != nil {
 		t.Log(err)
@@ -24,7 +24,7 @@ func TestDelete_EmptyFunctionGivenFails(t *testing.T) {
 
 func TestDelete_NonExistingFunctionGives404(t *testing.T) {
 	reqBody := `{"functionName":"does_not_exist"}`
-	_, code, err := fireRequest("http://localhost:8080/system/functions", http.MethodDelete, reqBody)
+	_, code, _, err := fireRequest("http://localhost:8080/system/functions", http.MethodDelete, reqBody)
 
 	if err != nil {
 		t.Log(err)
