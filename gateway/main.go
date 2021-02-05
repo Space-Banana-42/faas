@@ -146,7 +146,6 @@ func main() {
 		ServiceQuery:         externalServiceQuery,
 	}
 
-
 	faasHandlers.Proxy = handlers.MakeCallIDMiddleware(faasHandlers.Proxy)
 	functionProxy := faasHandlers.Proxy
 	if config.ScaleFromZero {
